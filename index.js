@@ -1,6 +1,3 @@
-
-const deleteMe = (hello) => {
-  return hello + ' world';
-}
+const deleteMe = (hello) => `${hello} world`;
 
 export default deleteMe;
