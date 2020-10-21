@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/vaziliybober/rss-aggregator/issues"
   },
-  "homepage": "https://github.com/vaziliybober/rss-aggregator#readme"
+  "homepage": "https://github.com/vaziliybober/rss-aggregator#readme",
+  "dependencies": {
+    "eslint": "^7.11.0"
+  }
 }
