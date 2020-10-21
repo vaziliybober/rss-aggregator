@@ -1,0 +1,20 @@
+{
+  "name": "@vaziliybober/rss-aggregator",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx -n --experimental-vm-modules jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaziliybober/rss-aggregator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaziliybober/rss-aggregator/issues"
+  },
+  "homepage": "https://github.com/vaziliybober/rss-aggregator#readme"
+}
