@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Document</title>
 </head>
+
 <body>
-  <div class="jumbotron text-center">
-    <h1 class="display-4">RSS Reader</h1>
-    <p class="lead">Start reading RSS today! It is easy, it is nicely.</p>
-    <form>
-      <input type="text">
-      <button type="submit">Add</button>
-    </form>
-  </div>
+  <div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="container-xl">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto">
+          <h1 class="display-3">RSS Reader</h1>
+          <p class="lead">Start reading RSS today! It is easy, it is nicely.</p>
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <input class="form-control form-control-lg" type="text" placeholder="RSS link" title="Please, fill out this field">
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-primary btn-lg px-sm-5" type="submit">Add</button>
+              </div>
+            </div>
+            <p id="emailHelp" class="form-text text-muted mb-1">Example: https://ru.hexlet.io/lessons.rss</p>
+          </form>
+        </div>
+      </div>
+    </div>
 </body>
+
 </html>
