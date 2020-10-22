@@ -5,7 +5,7 @@
 [![Continuous integration workflow](https://github.com/vaziliybober/rss-aggregator/workflows/Continuous%20integration%20workflow/badge.svg)](https://github.com/vaziliybober/rss-aggregator/actions)
 
 ## Link
-https://rss-aggregator-h7o5t93m1.vercel.app/
+https://rss-aggregator.vaziliybober.vercel.app/
 
 ### Hexlet tests and linter status:
 ![Actions Status](/workflows/hexlet-check/badge.svg)
