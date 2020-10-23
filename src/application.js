@@ -4,15 +4,13 @@ import watch from './view.js';
 const schema = yup.string().required().url();
 
 export default () => {
-  
   const state = {
     form: {
       state: 'valid',
-      link: ''
-    }
+      link: '',
+    },
   };
 
-  
   const form = document.querySelector('form');
 
   const elements = {
@@ -22,17 +20,16 @@ export default () => {
   };
 
   const watchedState = watch(state, elements);
-  
+
   const handler = (e) => {
     e.preventDefault();
 
     watchedState.form.link = elements.input.value;
-    
+
     try {
-      schema.validateSync(watchedState.form.link);      
+      schema.validateSync(watchedState.form.link);
       watchedState.form.state = 'valid';
-    }
-    catch (e) {
+    } catch (ex) {
       watchedState.form.state = 'invalid';
     }
   };
