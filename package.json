@@ -20,7 +20,9 @@
   "dependencies": {
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "on-change": "^2.1.4",
+    "popper.js": "^1.16.1",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "css-loader": "^5.0.0",
