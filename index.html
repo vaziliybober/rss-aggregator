@@ -7,27 +7,47 @@
   <title>RSS Reader</title>
 </head>
 
-<body>
-  <div class="jumbotron jumbotron-fluid bg-dark text-white">
-    <div class="container-xl">
-      <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto">
-          <h1 class="display-3">RSS Reader</h1>
-          <p class="lead">Start reading RSS today! It is easy, it is nice.</p>
-          <form>
-            <div class="form-row">
-              <div class="col">
-                <input class="form-control form-control-lg" type="text" placeholder="RSS link" title="Please, fill out this field">
+<body class="d-flex flex-column min-vh-100">
+  <main class='flex-grow-1'>
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+      <div class="container-xl">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto">
+            <h1 class="display-3">RSS Reader</h1>
+            <p class="lead">Start reading RSS today! It is easy, it is nice.</p>
+            <form>
+              <div class="form-row">
+                <div class="col">
+                  <input class="form-control form-control-lg" type="text" required autofocus placeholder="RSS link"
+                    title="Please, fill out this field">
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-primary btn-lg px-sm-5" type="submit">Add</button>
+                </div>
               </div>
-              <div class="col-auto">
-                <button class="btn btn-primary btn-lg px-sm-5" type="submit">Add</button>
-              </div>
-            </div>
-          </form>
-          <p id="emailHelp" class="form-text text-muted mb-1">Example: https://ru.hexlet.io/lessons.rss</p>
+            </form>
+            <p id="emailHelp" class="form-text text-muted mb-1">Examples: https://ru.hexlet.io/lessons.rss, https://ru.hexlet.io/blog.rss</p>
+          </div>
         </div>
       </div>
     </div>
+    <div class="container-xl mb-5">
+      <div class="row mb-5">
+        <div class="feeds col-md-10 col-lg-8 mx-auto">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="posts col-md-10 col-lg-8 mx-auto">
+
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer class='footer border-top py-3'>
+    <div class="text-center">created by <a href="https://github.com/vaziliybober" target="_blank" rel="nofollow">vaziliybober</a></div>
+  </footer>
 </body>
 
 </html>
