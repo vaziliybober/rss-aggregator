@@ -1,0 +1,45 @@
+{
+  "title": "Новые уроки на Хекслете",
+  "posts": [
+    {
+      "title": "Прокси (Proxy) / JS: Объектно-ориентированный дизайн",
+      "link": "https://ru.hexlet.io/ ourses/js-object-oriented-design/lessons/proxy/theory_unit"
+    },
+    {
+      "title": "Пишем код правильно / JS: Объектно-ориентированный дизайн",
+      "link": "https://ru.hexlet.io/courses/js-object-oriented-design/lessons/right-way-to-write-code/theory_unit"
+    },
+    {
+      "title": "Объекты-Сущности, Объекты-Значения и внедренные объекты / JS: Объектно-ориентированный дизайн",
+      "link": "https://ru.hexlet.io/courses/js-object-oriented-design/lessons/modeling/theory_unit"
+    },
+    {
+      "title": "О курсе / JS: Погружаясь в классы",
+      "link": "https://ru.hexlet.io/courses/js-classes/lessons/about/theory_unit"
+    },
+    {
+      "title": "Наследование / JS: Погружаясь в классы",
+      "link": "https://ru.hexlet.io/courses/js-classes/lessons/inheritance/theory_unit"
+    },
+    {
+      "title": "Fluent Interface / JS: Объектно-ориентированный дизайн",
+      "link": "https://ru.hexlet.io/courses/js-object-oriented-design/lessons/fluent-interface/theory_unit"
+    },
+    {
+      "title": "Шаблоны Проектирования / JS: Объектно-ориентированный дизайн",
+      "link": "https://ru.hexlet.io/courses/js-object-oriented-design/lessons/patterns/theory_unit"
+    },
+    {
+      "title": "Изменяемая конфигурация / JS: Объектно-ориентированный дизайн",
+      "link": "https://ru.hexlet.io/courses/js-object-oriented-design/lessons/configuration-setters/theory_unit"
+    },
+    {
+      "title": "Конфигурация / JS: Объектно-ориентированный дизайн",
+      "link": "https://ru.hexlet.io/courses/js-object-oriented-design/lessons/configuration/theory_unit"
+    },
+    {
+      "title": "О курсе / JS: Объектно-ориентированный дизайн",
+      "link": "https://ru.hexlet.io/courses/js-object-oriented-design/lessons/about/theory_unit"
+    }
+  ]
+}
