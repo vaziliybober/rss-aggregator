@@ -1,13 +1,13 @@
 import onChange from 'on-change';
 
-
 export default (state, elements) => {
-  const { form, input, submit, feedsContainer, postsContainer } = elements;
+  const {
+    form, input, submit, feedsContainer, postsContainer,
+  } = elements;
 
   const onIsValidChange = (isValid) => {
     if (isValid) {
       input.classList.remove('is-invalid');
-      
     } else {
       input.classList.add('is-invalid');
     }
@@ -27,7 +27,7 @@ export default (state, elements) => {
     hintDiv.classList.add('text-success');
     hintDiv.innerHTML = hint;
     form.parentNode.appendChild(hintDiv);
-  }
+  };
 
   const renderFeeds = (feeds) => {
     feedsContainer.innerHTML = '';
@@ -71,7 +71,7 @@ export default (state, elements) => {
       li.appendChild(a);
       a.href = post.link;
       a.target = '_blank';
-      a.rel = "nofollow";
+      a.rel = 'nofollow';
       a.textContent = post.title;
     });
   };
@@ -103,8 +103,10 @@ export default (state, elements) => {
             submit.disabled = false;
             break;
           default:
-            throw new Error('Unknown fetching state: ' + value);
+            throw new Error(`Unknown fetching state: ${value}`);
         }
+        break;
+      default:
         break;
     }
   });

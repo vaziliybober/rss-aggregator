@@ -13,17 +13,17 @@ const urls = {
 const addFeed = (state, feedData, link) => {
   const feedId = _.uniqueId();
 
-  state.feeds.push({ 
-    id: feedId, 
-    title: feedData.title, 
-    link
+  state.feeds.push({
+    id: feedId,
+    title: feedData.title,
+    link,
   });
 
   feedData.posts.forEach((post) => {
-    state.posts.push({ 
-      ...post, 
-      id: _.uniqueId(), 
-      feedId 
+    state.posts.push({
+      ...post,
+      id: _.uniqueId(),
+      feedId,
     });
   });
 };
@@ -44,19 +44,19 @@ const addFeedByLink = (state, link) => {
     url: `/${link}`,
     baseURL: urls.proxy(),
   })
-  .catch((error) => {
-    console.log(error);
-    throw new Error('Network error');
-  })
-  .then((response) => {
-    const rss = response.data;
-    try {
-      const feedData = parse(rss);
-      addFeed(state, feedData, link);
-    } catch (e) {
-      throw new Error('This source must contain valid RSS');
-    }
-  });
+    .catch((error) => {
+      console.log(error);
+      throw new Error('Network error');
+    })
+    .then((response) => {
+      const rss = response.data;
+      try {
+        const feedData = parse(rss);
+        addFeed(state, feedData, link);
+      } catch (e) {
+        throw new Error('This source must contain valid RSS');
+      }
+    });
 };
 
 export default () => {
@@ -65,10 +65,10 @@ export default () => {
     form: {
       isValid: true,
       error: '',
-      hint: ''
+      hint: '',
     },
     feeds: [],
-    posts: []
+    posts: [],
   };
 
   const form = document.querySelector('form');
@@ -78,7 +78,7 @@ export default () => {
     input: form.querySelector('input'),
     submit: form.querySelector('button'),
     feedsContainer: document.querySelector('.feeds'),
-    postsContainer: document.querySelector('.posts')
+    postsContainer: document.querySelector('.posts'),
   };
 
   const watchedState = watch(state, elements);
@@ -91,18 +91,18 @@ export default () => {
     watchedState.form.hint = '';
     watchedState.fetching = 'pending';
     return addFeedByLink(watchedState, elements.input.value)
-    .then(() => {
-      watchedState.form.error = '';
-      watchedState.form.hint = 'RSS has been loaded'
-      watchedState.form.isValid = true;
-      watchedState.fetching = 'finished';
-    })
-    .catch((err) => {
-      watchedState.form.error = err.message;
-      watchedState.form.hint = '';
-      watchedState.form.isValid = false;
-      watchedState.fetching = 'failed';
-    });
+      .then(() => {
+        watchedState.form.error = '';
+        watchedState.form.hint = 'RSS has been loaded';
+        watchedState.form.isValid = true;
+        watchedState.fetching = 'finished';
+      })
+      .catch((err) => {
+        watchedState.form.error = err.message;
+        watchedState.form.hint = '';
+        watchedState.form.isValid = false;
+        watchedState.fetching = 'failed';
+      });
   };
 
   elements.form.addEventListener('submit', handler);
