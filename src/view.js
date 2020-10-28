@@ -98,6 +98,7 @@ export default (state, elements) => {
             renderPosts(state.posts);
             submit.disabled = false;
             input.value = '';
+            input.focus();
             break;
           case 'failed':
             submit.disabled = false;
