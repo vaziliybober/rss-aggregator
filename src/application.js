@@ -1,8 +1,10 @@
 import * as yup from 'yup';
 import axios from 'axios';
+import i18next from 'i18next';
 import _ from 'lodash';
 import watch from './view.js';
 import parse from './parser.js';
+import resources from './locales/index.js';
 
 const schema = yup.string().required().url();
 
@@ -32,11 +34,11 @@ const addFeedByLink = (state, link) => {
   try {
     schema.validateSync(link);
   } catch (e) {
-    return Promise.reject(new Error('This must be a valid URL'));
+    return Promise.reject(new Error('invalidUrl'));
   }
 
   if (_.some(state.feeds, (feed) => feed.link === link)) {
-    return Promise.reject(new Error('This URL has already been added'));
+    return Promise.reject(new Error('repetativeUrl'));
   }
 
   return axios({
@@ -46,7 +48,7 @@ const addFeedByLink = (state, link) => {
   })
     .catch((error) => {
       console.log(error);
-      throw new Error('Network error');
+      throw new Error('networkError');
     })
     .then((response) => {
       const rss = response.data;
@@ -54,12 +56,12 @@ const addFeedByLink = (state, link) => {
         const feedData = parse(rss);
         addFeed(state, feedData, link);
       } catch (e) {
-        throw new Error('This source must contain valid RSS');
+        throw new Error('invalidRss');
       }
     });
 };
 
-export default () => {
+const setUpController = () => {
   const state = {
     fetching: 'finished',
     form: {
@@ -93,7 +95,7 @@ export default () => {
     return addFeedByLink(watchedState, elements.input.value)
       .then(() => {
         watchedState.form.error = '';
-        watchedState.form.hint = 'RSS has been loaded';
+        watchedState.form.hint = 'rssLoaded';
         watchedState.form.isValid = true;
         watchedState.fetching = 'finished';
       })
@@ -106,4 +108,13 @@ export default () => {
   };
 
   elements.form.addEventListener('submit', handler);
+};
+
+export default () => {
+  i18next.init({
+    lng: 'en',
+    debug: true,
+    resources,
+  })
+    .then(setUpController);
 };

@@ -1,4 +1,5 @@
 import onChange from 'on-change';
+import i18next from 'i18next';
 
 export default (state, elements) => {
   const {
@@ -17,7 +18,7 @@ export default (state, elements) => {
     form.nextElementSibling.nextElementSibling?.remove();
     const errorDiv = document.createElement('div');
     errorDiv.classList.add('text-danger');
-    errorDiv.innerHTML = error;
+    errorDiv.innerHTML = i18next.t(`form.errors.${error}`);
     form.parentNode.appendChild(errorDiv);
   };
 
@@ -25,7 +26,7 @@ export default (state, elements) => {
     form.nextElementSibling.nextElementSibling?.remove();
     const hintDiv = document.createElement('div');
     hintDiv.classList.add('text-success');
-    hintDiv.innerHTML = hint;
+    hintDiv.innerHTML = i18next.t(`form.hints.${hint}`);
     form.parentNode.appendChild(hintDiv);
   };
 
@@ -36,7 +37,7 @@ export default (state, elements) => {
     }
 
     const header = document.createElement('h2');
-    header.textContent = 'Feeds';
+    header.textContent = i18next.t('feeds');
     feedsContainer.appendChild(header);
     const ul = document.createElement('ul');
     ul.className = 'list-group';
@@ -57,7 +58,7 @@ export default (state, elements) => {
     }
 
     const header = document.createElement('h2');
-    header.textContent = 'Posts';
+    header.textContent = i18next.t('posts');
     postsContainer.appendChild(header);
     const ul = document.createElement('ul');
     ul.className = 'list-group';
