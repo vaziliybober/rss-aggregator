@@ -10,10 +10,16 @@ const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filepath) => path.join(__dirname, '..', '__fixtures__', filepath);
 
-test('parse', async () => {
-  const rss = await fs.readFile(getFixturePath('rss.xml'));
-  const actual = parse(rss);
-  const expected = JSON.parse(await fs.readFile(getFixturePath('parse-result.json')));
+test('parse', () => {
+  const readPromise = Promise.all([
+    fs.readFile(getFixturePath('rss.xml')),
+    fs.readFile(getFixturePath('parse-result.json')),
+  ]);
 
-  expect(actual).toEqual(expected);
+  return readPromise
+    .then(([rss, expectedRaw]) => {
+      const actual = parse(rss);
+      const expected = JSON.parse(expectedRaw);
+      expect(actual).toEqual(expected);
+    });
 });
