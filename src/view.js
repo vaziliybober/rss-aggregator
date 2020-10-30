@@ -19,7 +19,7 @@ export default (state, elements) => {
     if (error === '') {
       return;
     }
-    
+
     const errorDiv = document.createElement('div');
     errorDiv.classList.add('text-danger');
     errorDiv.innerHTML = i18next.t(`form.errors.${error}`);
@@ -31,7 +31,7 @@ export default (state, elements) => {
     if (hint === '') {
       return;
     }
-    
+
     const hintDiv = document.createElement('div');
     hintDiv.classList.add('text-success');
     hintDiv.innerHTML = i18next.t(`form.hints.${hint}`);
@@ -114,6 +114,11 @@ export default (state, elements) => {
             break;
           default:
             throw new Error(`Unknown fetching state: ${value}`);
+        }
+        break;
+      case 'updating':
+        if (value === 'finished') {
+          renderPosts(state.posts);
         }
         break;
       default:

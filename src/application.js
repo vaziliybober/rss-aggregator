@@ -12,6 +12,14 @@ const urls = {
   proxy: () => 'https://cors-anywhere.herokuapp.com',
 };
 
+const addPost = (state, postData, feedId) => {
+  state.posts.push({
+    title: postData.title,
+    id: postData.guid,
+    feedId,
+  });
+};
+
 const addFeed = (state, feedData, link) => {
   const feedId = _.uniqueId();
 
@@ -21,24 +29,16 @@ const addFeed = (state, feedData, link) => {
     link,
   });
 
-  feedData.posts.forEach((post) => {
-    state.posts.push({
-      ...post,
-      id: _.uniqueId(),
-      feedId,
-    });
+  feedData.posts.forEach((postData) => {
+    addPost(state, postData, feedId);
   });
 };
 
-const addFeedByLink = (state, link) => {
+const getFeedByLink = (link) => {
   try {
     schema.validateSync(link);
   } catch (e) {
     return Promise.reject(new Error('invalidUrl'));
-  }
-
-  if (_.some(state.feeds, (feed) => feed.link === link)) {
-    return Promise.reject(new Error('repetativeUrl'));
   }
 
   return axios({
@@ -46,12 +46,19 @@ const addFeedByLink = (state, link) => {
     url: `/${link}`,
     baseURL: urls.proxy(),
   })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
       throw new Error('networkError');
     })
-    .then((response) => {
-      const rss = response.data;
+    .then((response) => response.data);
+};
+
+const addFeedByLink = (state, link) => {
+  if (_.some(state.feeds, (feed) => feed.link === link)) {
+    return Promise.reject(new Error('repetativeUrl'));
+  }
+
+  return getFeedByLink(link)
+    .then((rss) => {
       try {
         const feedData = parse(rss);
         addFeed(state, feedData, link);
@@ -59,6 +66,29 @@ const addFeedByLink = (state, link) => {
         throw new Error('invalidRss');
       }
     });
+};
+
+const updateFeeds = (state) => {
+  if (state.feeds.length === 0) {
+    return Promise.resolve();
+  }
+
+  const promises = state.feeds.map((feed) => {
+    const feedId = feed.id;
+    const posts = state.posts.filter((post) => post.feedId === feed.id);
+    return getFeedByLink(feed.link).then((rss) => ({ rss, posts, feedId }));
+  });
+
+  return Promise.all(promises).then((data) => {
+    data.forEach(({ rss, posts, feedId }) => {
+      const rssData = parse(rss);
+      const newPostsData = rssData.posts
+        .filter((postData) => !_.some(posts, (post) => post.id === postData.guid));
+      newPostsData.forEach((postData) => {
+        addPost(state, postData, feedId);
+      });
+    });
+  });
 };
 
 const setUpController = () => {
@@ -69,6 +99,7 @@ const setUpController = () => {
       error: '',
       hint: '',
     },
+    updating: 'finished',
     feeds: [],
     posts: [],
   };
@@ -108,6 +139,20 @@ const setUpController = () => {
   };
 
   elements.form.addEventListener('submit', handler);
+
+  const setUpdateFeedsTimeout = () => setTimeout(() => {
+    watchedState.updating = 'pending';
+    return updateFeeds(watchedState)
+      .catch(() => {
+        watchedState.updating = 'failed';
+      })
+      .then(() => {
+        watchedState.updating = 'finished';
+      })
+      .then(setUpdateFeedsTimeout);
+  }, 5000);
+
+  setUpdateFeedsTimeout();
 };
 
 export default () => {

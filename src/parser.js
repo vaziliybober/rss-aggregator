@@ -8,6 +8,7 @@ const parse = (rss) => {
   const posts = postElements.map((postElem) => ({
     title: postElem.querySelector('title').textContent,
     link: postElem.querySelector('link').textContent,
+    guid: postElem.querySelector('guid').textContent,
   }));
 
   return { title, posts };
