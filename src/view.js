@@ -16,6 +16,10 @@ export default (state, elements) => {
 
   const onErrorChange = (error) => {
     form.nextElementSibling.nextElementSibling?.remove();
+    if (error === '') {
+      return;
+    }
+    
     const errorDiv = document.createElement('div');
     errorDiv.classList.add('text-danger');
     errorDiv.innerHTML = i18next.t(`form.errors.${error}`);
@@ -24,6 +28,10 @@ export default (state, elements) => {
 
   const onHintChange = (hint) => {
     form.nextElementSibling.nextElementSibling?.remove();
+    if (hint === '') {
+      return;
+    }
+    
     const hintDiv = document.createElement('div');
     hintDiv.classList.add('text-success');
     hintDiv.innerHTML = i18next.t(`form.hints.${hint}`);
