@@ -85,8 +85,42 @@ export default (state, elements) => {
     });
   };
 
+  const onFetchingChange = (fetchingState) => {
+    switch (fetchingState) {
+      case 'pending':
+        submit.disabled = true;
+        break;
+      case 'finished':
+        renderFeeds(state.feeds);
+        renderPosts(state.posts);
+        submit.disabled = false;
+        input.value = '';
+        input.focus();
+        break;
+      case 'failed':
+        submit.disabled = false;
+        break;
+      default:
+        throw new Error(`Unknown fetching state: ${fetchingState}`);
+    }
+  };
+
+  const onUpdatingChange = (updatingState) => {
+    switch (updatingState) {
+      case 'pending':
+        break;
+      case 'finished':
+        renderPosts(state.posts);
+        break;
+      case 'failed':
+        break;
+      default:
+        throw new Error(`Unknown updating state: ${updatingState}`);
+    }
+  };
+
   const watchedState = onChange(state, (path, value) => {
-    console.log(`${path} = ${value}`);
+    // console.log(`${path} = ${value}`);
     switch (path) {
       case 'form.isValid':
         onIsValidChange(value);
@@ -98,28 +132,10 @@ export default (state, elements) => {
         onHintChange(value);
         break;
       case 'fetching':
-        switch (value) {
-          case 'pending':
-            submit.disabled = true;
-            break;
-          case 'finished':
-            renderFeeds(state.feeds);
-            renderPosts(state.posts);
-            submit.disabled = false;
-            input.value = '';
-            input.focus();
-            break;
-          case 'failed':
-            submit.disabled = false;
-            break;
-          default:
-            throw new Error(`Unknown fetching state: ${value}`);
-        }
+        onFetchingChange(value);
         break;
       case 'updating':
-        if (value === 'finished') {
-          renderPosts(state.posts);
-        }
+        onUpdatingChange(value);
         break;
       default:
         break;

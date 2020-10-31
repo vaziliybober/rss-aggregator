@@ -12,15 +12,15 @@ const urls = {
   proxy: () => 'https://cors-anywhere.herokuapp.com',
 };
 
-const addPost = (state, postData, feedId) => {
+const addPostToState = (state, postData, feedId) => {
   state.posts.push({
-    title: postData.title,
+    ...postData,
     id: postData.guid,
     feedId,
   });
 };
 
-const addFeed = (state, feedData, link) => {
+const addFeedToState = (state, feedData, link) => {
   const feedId = _.uniqueId();
 
   state.feeds.push({
@@ -30,11 +30,11 @@ const addFeed = (state, feedData, link) => {
   });
 
   feedData.posts.forEach((postData) => {
-    addPost(state, postData, feedId);
+    addPostToState(state, postData, feedId);
   });
 };
 
-const getFeedByLink = (link) => {
+const getRssByLink = (link) => {
   try {
     schema.validateSync(link);
   } catch (e) {
@@ -52,16 +52,16 @@ const getFeedByLink = (link) => {
     .then((response) => response.data);
 };
 
-const addFeedByLink = (state, link) => {
+const addFeedToStateByLink = (state, link) => {
   if (_.some(state.feeds, (feed) => feed.link === link)) {
     return Promise.reject(new Error('repetativeUrl'));
   }
 
-  return getFeedByLink(link)
+  return getRssByLink(link)
     .then((rss) => {
       try {
         const feedData = parse(rss);
-        addFeed(state, feedData, link);
+        addFeedToState(state, feedData, link);
       } catch (e) {
         throw new Error('invalidRss');
       }
@@ -75,17 +75,26 @@ const updateFeeds = (state) => {
 
   const promises = state.feeds.map((feed) => {
     const feedId = feed.id;
-    const posts = state.posts.filter((post) => post.feedId === feed.id);
-    return getFeedByLink(feed.link).then((rss) => ({ rss, posts, feedId }));
+    const oldPosts = state.posts.filter((post) => post.feedId === feed.id);
+    return getRssByLink(feed.link)
+      .then((rss) => {
+        try {
+          return { rssData: parse(rss), oldPosts, feedId };
+        } catch (err) {
+          throw new Error('invalidRss');
+        }
+      })
+      .catch((err) => {
+        console.log(`Error ${err.message} while updating this feed: ${feed.title}`);
+      });
   });
 
-  return Promise.all(promises).then((data) => {
-    data.forEach(({ rss, posts, feedId }) => {
-      const rssData = parse(rss);
-      const newPostsData = rssData.posts
-        .filter((postData) => !_.some(posts, (post) => post.id === postData.guid));
-      newPostsData.forEach((postData) => {
-        addPost(state, postData, feedId);
+  return Promise.all(promises).then((promisesResults) => {
+    promisesResults.forEach(({ rssData, oldPosts, feedId }) => {
+      const newPostsDataList = rssData.posts
+        .filter((postData) => !_.some(oldPosts, (post) => post.id === postData.guid));
+      newPostsDataList.forEach((postData) => {
+        addPostToState(state, postData, feedId);
       });
     });
   });
@@ -123,7 +132,7 @@ const setUpController = () => {
     watchedState.form.error = '';
     watchedState.form.hint = '';
     watchedState.fetching = 'pending';
-    return addFeedByLink(watchedState, elements.input.value)
+    return addFeedToStateByLink(watchedState, elements.input.value)
       .then(() => {
         watchedState.form.error = '';
         watchedState.form.hint = 'rssLoaded';
