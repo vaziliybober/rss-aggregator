@@ -167,7 +167,6 @@ const setUpController = () => {
 export default () => {
   i18next.init({
     lng: 'en',
-    debug: true,
     resources,
   })
     .then(setUpController);
