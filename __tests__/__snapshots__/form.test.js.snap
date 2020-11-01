@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`form 1`] = `
+exports[`form initial 1`] = `
 "<div class=\\"container-xl\\">
     <div class=\\"row\\">
         <div class=\\"col-md-10 col-lg-8 mx-auto\\">
@@ -38,7 +38,46 @@ exports[`form 1`] = `
 "
 `;
 
-exports[`form 2`] = `
+exports[`form invalid RSS 1`] = `
+"<div class=\\"container-xl\\">
+    <div class=\\"row\\">
+        <div class=\\"col-md-10 col-lg-8 mx-auto\\">
+            <h1 class=\\"display-3\\">RSS Reader</h1>
+            <p class=\\"lead\\">Start reading RSS today! It is easy, it is nice.</p>
+            <form>
+                <div class=\\"form-row\\">
+                    <div class=\\"col\\">
+                        <input
+                            class=\\"form-control form-control-lg is-invalid\\"
+                            type=\\"text\\"
+                            required=\\"\\"
+                            autofocus=\\"\\"
+                            placeholder=\\"RSS link\\"
+                            title=\\"Please, fill out this field\\"
+                        />
+                    </div>
+                    <div class=\\"col-auto\\">
+                        <button
+                            class=\\"btn btn-primary btn-lg px-sm-5\\"
+                            type=\\"submit\\"
+                        >
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <p id=\\"emailHelp\\" class=\\"form-text text-muted mb-1\\">
+                Examples: https://ru.hexlet.io/lessons.rss,
+                https://ru.hexlet.io/blog.rss
+            </p>
+            <div class=\\"text-danger\\">This source must contain valid RSS</div>
+        </div>
+    </div>
+</div>
+"
+`;
+
+exports[`form invalid url 1`] = `
 "<div class=\\"container-xl\\">
     <div class=\\"row\\">
         <div class=\\"col-md-10 col-lg-8 mx-auto\\">
@@ -71,6 +110,123 @@ exports[`form 2`] = `
                 https://ru.hexlet.io/blog.rss
             </p>
             <div class=\\"text-danger\\">This must be a valid URL</div>
+        </div>
+    </div>
+</div>
+"
+`;
+
+exports[`form network error 1`] = `
+"<div class=\\"container-xl\\">
+    <div class=\\"row\\">
+        <div class=\\"col-md-10 col-lg-8 mx-auto\\">
+            <h1 class=\\"display-3\\">RSS Reader</h1>
+            <p class=\\"lead\\">Start reading RSS today! It is easy, it is nice.</p>
+            <form>
+                <div class=\\"form-row\\">
+                    <div class=\\"col\\">
+                        <input
+                            class=\\"form-control form-control-lg is-invalid\\"
+                            type=\\"text\\"
+                            required=\\"\\"
+                            autofocus=\\"\\"
+                            placeholder=\\"RSS link\\"
+                            title=\\"Please, fill out this field\\"
+                        />
+                    </div>
+                    <div class=\\"col-auto\\">
+                        <button
+                            class=\\"btn btn-primary btn-lg px-sm-5\\"
+                            type=\\"submit\\"
+                        >
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <p id=\\"emailHelp\\" class=\\"form-text text-muted mb-1\\">
+                Examples: https://ru.hexlet.io/lessons.rss,
+                https://ru.hexlet.io/blog.rss
+            </p>
+            <div class=\\"text-danger\\">Network error</div>
+        </div>
+    </div>
+</div>
+"
+`;
+
+exports[`form rss loaded and can't load same 1`] = `
+"<div class=\\"container-xl\\">
+    <div class=\\"row\\">
+        <div class=\\"col-md-10 col-lg-8 mx-auto\\">
+            <h1 class=\\"display-3\\">RSS Reader</h1>
+            <p class=\\"lead\\">Start reading RSS today! It is easy, it is nice.</p>
+            <form>
+                <div class=\\"form-row\\">
+                    <div class=\\"col\\">
+                        <input
+                            class=\\"form-control form-control-lg\\"
+                            type=\\"text\\"
+                            required=\\"\\"
+                            autofocus=\\"\\"
+                            placeholder=\\"RSS link\\"
+                            title=\\"Please, fill out this field\\"
+                        />
+                    </div>
+                    <div class=\\"col-auto\\">
+                        <button
+                            class=\\"btn btn-primary btn-lg px-sm-5\\"
+                            type=\\"submit\\"
+                        >
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <p id=\\"emailHelp\\" class=\\"form-text text-muted mb-1\\">
+                Examples: https://ru.hexlet.io/lessons.rss,
+                https://ru.hexlet.io/blog.rss
+            </p>
+            <div class=\\"text-success\\">RSS has been loaded</div>
+        </div>
+    </div>
+</div>
+"
+`;
+
+exports[`form rss loaded and can't load same 2`] = `
+"<div class=\\"container-xl\\">
+    <div class=\\"row\\">
+        <div class=\\"col-md-10 col-lg-8 mx-auto\\">
+            <h1 class=\\"display-3\\">RSS Reader</h1>
+            <p class=\\"lead\\">Start reading RSS today! It is easy, it is nice.</p>
+            <form>
+                <div class=\\"form-row\\">
+                    <div class=\\"col\\">
+                        <input
+                            class=\\"form-control form-control-lg is-invalid\\"
+                            type=\\"text\\"
+                            required=\\"\\"
+                            autofocus=\\"\\"
+                            placeholder=\\"RSS link\\"
+                            title=\\"Please, fill out this field\\"
+                        />
+                    </div>
+                    <div class=\\"col-auto\\">
+                        <button
+                            class=\\"btn btn-primary btn-lg px-sm-5\\"
+                            type=\\"submit\\"
+                        >
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <p id=\\"emailHelp\\" class=\\"form-text text-muted mb-1\\">
+                Examples: https://ru.hexlet.io/lessons.rss,
+                https://ru.hexlet.io/blog.rss
+            </p>
+            <div class=\\"text-danger\\">This URL has already been added</div>
         </div>
     </div>
 </div>
