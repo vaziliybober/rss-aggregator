@@ -2,7 +2,7 @@ const parse = (rss) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(rss, 'text/xml');
   const errors = Array.from(doc.getElementsByTagName('parsererror'))
-    .map(err => err.innerHTML);
+    .map((err) => err.innerHTML);
 
   try {
     const title = doc.querySelector('title').textContent;
@@ -14,8 +14,7 @@ const parse = (rss) => {
     }));
 
     return { title, posts, errors };
-  }
-  catch (err) {
+  } catch (err) {
     return { errors: [...errors, err] };
   }
 };

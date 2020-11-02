@@ -6,7 +6,7 @@ import watch from './view.js';
 import parse from './parser.js';
 import resources from './locales/index.js';
 
-const schema = yup.string().required().url();
+const urlSchema = yup.string().required().url('invalidUrl');
 
 const urls = {
   proxy: () => 'https://cors-anywhere.herokuapp.com',
@@ -34,39 +34,24 @@ const addFeedToState = (state, feedData, link) => {
   });
 };
 
-const getRssByLink = (link) => {
-  try {
-    schema.validateSync(link);
-  } catch (e) {
-    return Promise.reject(new Error('invalidUrl'));
-  }
+const getRssByLink = (link) => axios.get(`${urls.proxy()}/${link}`)
+  .then((response) => response.data)
+  .catch(() => {
+    throw new Error('networkError');
+  });
 
-  return axios({
-    method: 'get',
-    url: `/${link}`,
-    baseURL: urls.proxy(),
-  })
-    .catch(() => {
-      throw new Error('networkError');
-    })
-    .then((response) => response.data);
-};
-
-const addFeedToStateByLink = (state, link) => {
-  if (_.some(state.feeds, (feed) => feed.link === link)) {
-    return Promise.reject(new Error('repetativeUrl'));
-  }
-
-  return getRssByLink(link)
-    .then((rss) => {
-      try {
-        const feedData = parse(rss);
-        addFeedToState(state, feedData, link);
-      } catch (e) {
-        throw new Error('invalidRss');
-      }
-    });
-};
+const addFeedToStateByLink = (state, link) => urlSchema
+  .notOneOf(state.feeds.map((feed) => feed.link), 'repetativeUrl')
+  .validate(link)
+  .then(getRssByLink)
+  .then((rss) => {
+    try {
+      const feedData = parse(rss);
+      addFeedToState(state, feedData, link);
+    } catch (e) {
+      throw new Error('invalidRss');
+    }
+  });
 
 const updateFeeds = (state) => {
   if (state.feeds.length === 0) {
@@ -83,16 +68,13 @@ const updateFeeds = (state) => {
         } catch (err) {
           throw new Error('invalidRss');
         }
-      })
-      .catch((err) => {
-        console.log(`Error ${err.message} while updating this feed: ${feed.title}`);
       });
   });
 
   return Promise.all(promises).then((promisesResults) => {
     promisesResults.forEach(({ rssData, oldPosts, feedId }) => {
-      const newPostsDataList = rssData.posts
-        .filter((postData) => !_.some(oldPosts, (post) => post.id === postData.guid));
+      const newPostsDataList = _.differenceWith(rssData.posts, oldPosts,
+        (p1, p2) => p1.guid === p2.id);
       newPostsDataList.forEach((postData) => {
         addPostToState(state, postData, feedId);
       });
