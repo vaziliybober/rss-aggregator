@@ -1,0 +1,533 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`content feeds with updating 1`] = `
+"<div class=\\"row mb-5\\">
+    <div class=\\"feeds col-md-10 col-lg-8 mx-auto\\">
+        <h2>Feeds</h2>
+        <ul class=\\"list-group\\">
+            <li class=\\"list-group-item\\">Новые уроки на Хекслете</li>
+        </ul>
+    </div>
+</div>
+<div class=\\"row\\">
+    <div class=\\"posts col-md-10 col-lg-8 mx-auto\\">
+        <h2>Posts</h2>
+        <ul class=\\"list-group\\">
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/ ourses/js-object-oriented-design/lessons/proxy/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Прокси (Proxy) / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/right-way-to-write-code/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Пишем код правильно / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/modeling/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Объекты-Сущности, Объекты-Значения и внедренные объекты /
+                    JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-classes/lessons/about/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    О курсе / JS: Погружаясь в классы
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-classes/lessons/inheritance/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Наследование / JS: Погружаясь в классы
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/fluent-interface/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Fluent Interface / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/patterns/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Шаблоны Проектирования / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/configuration-setters/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Изменяемая конфигурация / JS: Объектно-ориентированный
+                    дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/configuration/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Конфигурация / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/about/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    О курсе / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+"
+`;
+
+exports[`content feeds with updating 2`] = `
+"<div class=\\"row mb-5\\">
+    <div class=\\"feeds col-md-10 col-lg-8 mx-auto\\">
+        <h2>Feeds</h2>
+        <ul class=\\"list-group\\">
+            <li class=\\"list-group-item\\">Новые уроки на Хекслете</li>
+        </ul>
+    </div>
+</div>
+<div class=\\"row\\">
+    <div class=\\"posts col-md-10 col-lg-8 mx-auto\\">
+        <h2>Posts</h2>
+        <ul class=\\"list-group\\">
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/ ourses/js-object-oriented-design/lessons/proxy/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Прокси (Proxy) / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/right-way-to-write-code/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Пишем код правильно / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/modeling/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Объекты-Сущности, Объекты-Значения и внедренные объекты /
+                    JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-classes/lessons/about/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    О курсе / JS: Погружаясь в классы
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-classes/lessons/inheritance/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Наследование / JS: Погружаясь в классы
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/fluent-interface/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Fluent Interface / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/patterns/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Шаблоны Проектирования / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/configuration-setters/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Изменяемая конфигурация / JS: Объектно-ориентированный
+                    дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/configuration/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Конфигурация / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/about/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    О курсе / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270940\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:49:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270910\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:48:30Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270880\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:48:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270850\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:47:30Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270820\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:47:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270790\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:46:30Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270760\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:46:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270730\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:45:30Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270700\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:45:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270730\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    OLD ITEM
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+"
+`;
+
+exports[`content feeds with updating 3`] = `
+"<div class=\\"row mb-5\\">
+    <div class=\\"feeds col-md-10 col-lg-8 mx-auto\\">
+        <h2>Feeds</h2>
+        <ul class=\\"list-group\\">
+            <li class=\\"list-group-item\\">Новые уроки на Хекслете</li>
+        </ul>
+    </div>
+</div>
+<div class=\\"row\\">
+    <div class=\\"posts col-md-10 col-lg-8 mx-auto\\">
+        <h2>Posts</h2>
+        <ul class=\\"list-group\\">
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/ ourses/js-object-oriented-design/lessons/proxy/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Прокси (Proxy) / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/right-way-to-write-code/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Пишем код правильно / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/modeling/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Объекты-Сущности, Объекты-Значения и внедренные объекты /
+                    JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-classes/lessons/about/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    О курсе / JS: Погружаясь в классы
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-classes/lessons/inheritance/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Наследование / JS: Погружаясь в классы
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/fluent-interface/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Fluent Interface / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/patterns/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Шаблоны Проектирования / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/configuration-setters/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Изменяемая конфигурация / JS: Объектно-ориентированный
+                    дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/configuration/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Конфигурация / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"https://ru.hexlet.io/courses/js-object-oriented-design/lessons/about/theory_unit\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    О курсе / JS: Объектно-ориентированный дизайн
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270940\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:49:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270910\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:48:30Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270880\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:48:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270850\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:47:30Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270820\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:47:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270790\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:46:30Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270760\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:46:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270730\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:45:30Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270700\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    Lorem ipsum 2020-11-01T22:45:00Z
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/1604270730\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    OLD ITEM
+                </a>
+            </li>
+            <li class=\\"list-group-item\\">
+                <a
+                    href=\\"http://example.com/test/16042707301111\\"
+                    target=\\"_blank\\"
+                    rel=\\"nofollow\\"
+                >
+                    NEW ITEM
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+"
+`;
+
+exports[`content initial 1`] = `
+"<div class=\\"row mb-5\\">
+    <div class=\\"feeds col-md-10 col-lg-8 mx-auto\\"></div>
+</div>
+<div class=\\"row\\">
+    <div class=\\"posts col-md-10 col-lg-8 mx-auto\\"></div>
+</div>
+"
+`;
