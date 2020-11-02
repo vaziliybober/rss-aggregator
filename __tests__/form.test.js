@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import nock from 'nock';
 import prettier from 'prettier';
 import path from 'path';
@@ -31,16 +29,13 @@ beforeEach(() => {
   const initHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html')).toString();
   document.documentElement.innerHTML = initHtml;
 
-  const section = document.querySelector('section.jumbotron');
+  const section = document.querySelector('.section-form');
   const form = section.querySelector('form');
 
   elements = {
     section,
-    form,
     input: form.querySelector('input'),
     submit: form.querySelector('button'),
-    feedsContainer: document.querySelector('.feeds'),
-    postsContainer: document.querySelector('.posts'),
   };
 
   run();
