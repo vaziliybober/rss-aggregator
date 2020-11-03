@@ -18,23 +18,21 @@ const getRssByLink = (link) => axios.get(`${urls.proxy()}/${link}`)
     throw new Error('networkError');
   });
 
-const addFeedToStateByLink = (state, link) => {
-  return urlSchema
-    .notOneOf(state.feeds.map((feed) => feed.link), 'repetativeUrl')
-    .validate(link)
-    .then(getRssByLink)
-    .then((rss) => {
-      try {
-        const feedData = parse(rss);
-        const feedId = _.uniqueId();
-        state.feeds.push({ id: feedId, title: feedData.title, link });
-        const posts = feedData.posts.map((postData) => ({ ...postData, feedId }));
-        state.posts.push(...posts);
-      } catch (e) {
-        throw new Error('invalidRss');
-      }
-    });
-}
+const addFeedToStateByLink = (state, link) => urlSchema
+  .notOneOf(state.feeds.map((feed) => feed.link), 'repetativeUrl')
+  .validate(link)
+  .then(getRssByLink)
+  .then((rss) => {
+    try {
+      const feedData = parse(rss);
+      const feedId = _.uniqueId();
+      state.feeds.push({ id: feedId, title: feedData.title, link });
+      const posts = feedData.posts.map((postData) => ({ ...postData, feedId }));
+      state.posts.push(...posts);
+    } catch (e) {
+      throw new Error('invalidRss');
+    }
+  });
 
 const updateFeeds = (state) => {
   if (state.feeds.length === 0) {
@@ -133,5 +131,3 @@ export default () => {
       setUpdateFeedsTimeout();
     });
 };
-
-
