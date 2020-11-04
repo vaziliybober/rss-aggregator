@@ -63,23 +63,23 @@ const updateFeeds = (state) => {
 };
 
 export default () => {
-  const state = {
-    fetching: 'finished',
-    form: {
-      isValid: true,
-      error: '',
-      hint: '',
-    },
-    updating: 'finished',
-    feeds: [],
-    posts: [],
-  };
-
   i18next.init({
     lng: 'en',
     resources,
   })
     .then(() => {
+      const state = {
+        fetching: 'finished',
+        form: {
+          isValid: true,
+          error: '',
+          hint: '',
+        },
+        updating: 'finished',
+        feeds: [],
+        posts: [],
+      };
+
       const form = document.querySelector('form');
 
       const elements = {
