@@ -27,7 +27,7 @@ const addFeedToStateByLink = (state, link) => urlSchema
       const feedData = parse(rss);
       const feedId = _.uniqueId();
       state.feeds.push({ id: feedId, title: feedData.title, link });
-      const posts = feedData.posts.map((postData) => ({ ...postData, feedId }));
+      const posts = feedData.items.map((item) => ({ ...item, feedId }));
       state.posts.push(...posts);
     } catch (e) {
       throw new Error('invalidRss');
@@ -54,9 +54,9 @@ const updateFeeds = (state) => {
 
   return Promise.all(promises).then((promisesResults) => {
     promisesResults.forEach(({ rssData, oldPosts, feedId }) => {
-      const newPostsDataList = _.differenceWith(rssData.posts, oldPosts,
+      const newItems = _.differenceWith(rssData.items, oldPosts,
         (p1, p2) => p1.guid === p2.guid);
-      const newPosts = newPostsDataList.map((postData) => ({ ...postData, feedId }));
+      const newPosts = newItems.map((item) => ({ ...item, feedId }));
       state.posts.push(...newPosts);
     });
   });
