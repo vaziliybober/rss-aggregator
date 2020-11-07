@@ -8,6 +8,7 @@ import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
 import i18next from 'i18next';
 import run from '../src/application.js';
+import config from '../src/config.js';
 
 axios.defaults.adapter = httpAdapter;
 nock.disableNetConnect();
@@ -19,6 +20,9 @@ const options = {
   htmlWhitespaceSensitivity: 'ignore',
   tabWidth: 4,
 };
+
+const { proxyUrl } = config;
+const someUrl = 'https://ru.hexlet.io/lessons.rss';
 
 let elements;
 
@@ -55,9 +59,9 @@ test('form invalid url', async () => {
 });
 
 test('form invalid RSS', async () => {
-  elements.input.value = 'https://ru.hexlet.io/lessons.rss';
-  nock('https://cors-anywhere.herokuapp.com')
-    .get('/https://ru.hexlet.io/lessons.rss')
+  elements.input.value = someUrl;
+  nock(proxyUrl)
+    .get(`/${someUrl}`)
     .reply(200, 'some invalid <pipipu> rss');
   elements.submit.click();
   await waitFor(() => {
@@ -67,9 +71,9 @@ test('form invalid RSS', async () => {
 });
 
 test('form network error', async () => {
-  elements.input.value = 'https://ru.hexletttttttt.io/lessons.rss';
-  nock('https://cors-anywhere.herokuapp.com')
-    .get('/https://ru.hexletttttttt.io/lessons.rss')
+  elements.input.value = someUrl;
+  nock(proxyUrl)
+    .get(`/${someUrl}`)
     .replyWithError('some error');
   elements.submit.click();
   await waitFor(() => {
@@ -79,10 +83,10 @@ test('form network error', async () => {
 });
 
 test("form rss loaded and can't load same", async () => {
-  elements.input.value = 'https://ru.hexlet.io/lessons.rss';
+  elements.input.value = someUrl;
   const rss = await fsp.readFile(getFixturePath('rss.xml'));
-  nock('https://cors-anywhere.herokuapp.com')
-    .get('/https://ru.hexlet.io/lessons.rss')
+  nock(proxyUrl)
+    .get(`/${someUrl}`)
     .reply(200, rss);
   elements.submit.click();
   await waitFor(() => {
@@ -90,7 +94,7 @@ test("form rss loaded and can't load same", async () => {
   });
   expect(getSectionTree()).toMatchSnapshot();
 
-  elements.input.value = 'https://ru.hexlet.io/lessons.rss';
+  elements.input.value = someUrl;
   elements.submit.click();
   await waitFor(() => {
     expect(elements.section).toHaveTextContent(i18next.t('form.errors.repetativeUrl'));

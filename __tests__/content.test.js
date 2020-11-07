@@ -7,6 +7,7 @@ import '@testing-library/jest-dom';
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
 import run from '../src/application.js';
+import config from '../src/config.js';
 
 axios.defaults.adapter = httpAdapter;
 nock.disableNetConnect();
@@ -18,6 +19,9 @@ const options = {
   htmlWhitespaceSensitivity: 'ignore',
   tabWidth: 4,
 };
+
+const { proxyUrl } = config;
+const someUrl = 'https://ru.hexlet.io/lessons.rss';
 
 let elements;
 
@@ -55,9 +59,8 @@ test('content feeds with updating', async () => {
   const rss1 = await fsp.readFile(getFixturePath('rss1.xml'));
   const rss2 = await fsp.readFile(getFixturePath('rss2.xml'));
 
-  elements.input.value = 'https://ru.hexlet.io/lessons.rss';
-  nock('https://cors-anywhere.herokuapp.com')
-    .get('/https://ru.hexlet.io/lessons.rss')
+  elements.input.value = someUrl;
+  nock(proxyUrl).get(`/${someUrl}`)
     .reply(200, rss);
   elements.submit.click();
   await waitFor(() => {
@@ -65,9 +68,8 @@ test('content feeds with updating', async () => {
   });
   expect(getSectionTree()).toMatchSnapshot();
 
-  elements.input.value = 'https://ru.hexlet.io/lessons.rss';
-  nock('https://cors-anywhere.herokuapp.com')
-    .get('/https://ru.hexlet.io/lessons.rss')
+  elements.input.value = someUrl;
+  nock(proxyUrl).get(`/${someUrl}`)
     .reply(200, rss1);
   elements.submit.click();
   await waitFor(() => {
@@ -76,8 +78,7 @@ test('content feeds with updating', async () => {
   });
   expect(getSectionTree()).toMatchSnapshot();
 
-  const scope = nock('https://cors-anywhere.herokuapp.com')
-    .get('/https://ru.hexlet.io/lessons.rss')
+  const scope = nock(proxyUrl).get(`/${someUrl}`)
     .reply(200, rss2);
   await waitFor(() => {
     expect(elements.section).toHaveTextContent('NEW ITEM');

@@ -5,14 +5,11 @@ import _ from 'lodash';
 import watch from './watchers.js';
 import parse from './parser.js';
 import resources from './locales/index.js';
+import config from './config.js';
 
 const urlSchema = yup.string().required().url('invalidUrl');
 
-const urls = {
-  proxy: () => 'https://cors-anywhere.herokuapp.com',
-};
-
-const getRssByLink = (link) => axios.get(`${urls.proxy()}/${link}`)
+const getRssByLink = (link) => axios.get(`${config.proxyUrl}/${link}`)
   .then((response) => response.data)
   .catch(() => {
     throw new Error('networkError');
@@ -62,7 +59,9 @@ const updateFeeds = (state) => {
   });
 };
 
-export default () => {
+export default (options = {}) => {
+  Object.assign(config, options);
+
   i18next.init({
     lng: 'en',
     resources,
@@ -126,7 +125,7 @@ export default () => {
             watchedState.updating = 'finished';
           })
           .then(setUpdateFeedsTimeout);
-      }, 5000);
+      }, config.updateInterval);
 
       setUpdateFeedsTimeout();
     });
