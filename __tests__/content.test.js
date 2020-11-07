@@ -50,10 +50,11 @@ test('content initial', async () => {
 });
 
 test('content feeds with updating', async () => {
-  const oldSetTimeout = window.setTimeout;
-  window.setTimeout = (callback) => oldSetTimeout(callback, 10);
-
+  jest.useFakeTimers();
   run();
+
+  // alternatively:
+  // run({ updateInterval: 10 });
 
   const rss = await fsp.readFile(getFixturePath('rss.xml'));
   const rss1 = await fsp.readFile(getFixturePath('rss1.xml'));
@@ -85,6 +86,4 @@ test('content feeds with updating', async () => {
   });
   expect(getSectionTree()).toMatchSnapshot();
   scope.done();
-
-  window.setTimeout = oldSetTimeout;
 });
