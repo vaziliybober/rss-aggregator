@@ -6,8 +6,7 @@
 
 RSS Aggregator is an application that allows you to add RSS feeds. It updates your feeds automatically every 5 seconds
 
+This is the lvl-3 frontend project on https://ru.hexlet.io/
+
 ## Link
 https://rss-aggregator.vaziliybober.vercel.app/
-
-### Hexlet tests and linter status:
-![Actions Status](/workflows/hexlet-check/badge.svg)
