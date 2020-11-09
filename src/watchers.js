@@ -6,36 +6,15 @@ export default (state, elements) => {
     form, input, submit, feedsContainer, postsContainer,
   } = elements;
 
-  const onIsValidChange = (isValid) => {
-    if (isValid) {
-      input.classList.remove('is-invalid');
-    } else {
-      input.classList.add('is-invalid');
-    }
-  };
-
-  const onErrorChange = (error) => {
+  const showMessage = (message, style = 'text-info') => {
     form.nextElementSibling.nextElementSibling?.remove();
-    if (error === '') {
+    if (message === '') {
       return;
     }
-
-    const errorDiv = document.createElement('div');
-    errorDiv.classList.add('text-danger');
-    errorDiv.innerHTML = i18next.t(`form.errors.${error}`);
-    form.parentNode.appendChild(errorDiv);
-  };
-
-  const onHintChange = (hint) => {
-    form.nextElementSibling.nextElementSibling?.remove();
-    if (hint === '') {
-      return;
-    }
-
-    const hintDiv = document.createElement('div');
-    hintDiv.classList.add('text-success');
-    hintDiv.innerHTML = i18next.t(`form.hints.${hint}`);
-    form.parentNode.appendChild(hintDiv);
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add(style);
+    messageDiv.innerHTML = message;
+    form.parentNode.appendChild(messageDiv);
   };
 
   const renderFeeds = (feeds) => {
@@ -43,7 +22,6 @@ export default (state, elements) => {
     if (feeds.length === 0) {
       return;
     }
-
     const header = document.createElement('h2');
     header.textContent = i18next.t('feeds');
     feedsContainer.appendChild(header);
@@ -64,7 +42,6 @@ export default (state, elements) => {
     if (posts.length === 0) {
       return;
     }
-
     const header = document.createElement('h2');
     header.textContent = i18next.t('posts');
     postsContainer.appendChild(header);
@@ -85,12 +62,13 @@ export default (state, elements) => {
     });
   };
 
-  const onFetchingChange = (fetchingState) => {
+  const onFetchingStateChange = (fetchingState) => {
     switch (fetchingState) {
       case 'pending':
         submit.disabled = true;
         break;
       case 'finished':
+        showMessage(i18next.t('fetching.success'), 'text-success');
         renderFeeds(state.feeds);
         renderPosts(state.posts);
         submit.disabled = false;
@@ -105,14 +83,12 @@ export default (state, elements) => {
     }
   };
 
-  const onUpdatingChange = (updatingState) => {
+  const onUpdatingStateChange = (updatingState) => {
     switch (updatingState) {
       case 'pending':
         break;
       case 'finished':
         renderPosts(state.posts);
-        break;
-      case 'failed':
         break;
       default:
         throw new Error(`Unknown updating state: ${updatingState}`);
@@ -122,19 +98,20 @@ export default (state, elements) => {
   const watchedState = onChange(state, (path, value) => {
     switch (path) {
       case 'form.isValid':
-        onIsValidChange(value);
+        if (value) input.classList.remove('is-invalid');
+        else input.classList.add('is-invalid');
         break;
       case 'form.error':
-        onErrorChange(value);
+        showMessage(value && i18next.t(`form.errors.${value}`), 'text-danger');
         break;
-      case 'form.hint':
-        onHintChange(value);
+      case 'fetching.state':
+        onFetchingStateChange(value);
         break;
-      case 'fetching':
-        onFetchingChange(value);
+      case 'fetching.error':
+        showMessage(value && i18next.t(`fetching.errors.${value}`), 'text-danger');
         break;
-      case 'updating':
-        onUpdatingChange(value);
+      case 'updating.state':
+        onUpdatingStateChange(value);
         break;
       default:
         break;

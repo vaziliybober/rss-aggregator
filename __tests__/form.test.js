@@ -65,7 +65,7 @@ test('form invalid RSS', async () => {
     .reply(200, 'some invalid <pipipu> rss');
   elements.submit.click();
   await waitFor(() => {
-    expect(elements.section).toHaveTextContent(i18next.t('form.errors.invalidRss'));
+    expect(elements.section).toHaveTextContent(i18next.t('fetching.errors.invalidRss'));
   });
   expect(getSectionTree()).toMatchSnapshot();
 });
@@ -77,7 +77,7 @@ test('form network error', async () => {
     .replyWithError('some error');
   elements.submit.click();
   await waitFor(() => {
-    expect(elements.section).toHaveTextContent(i18next.t('form.errors.networkError'));
+    expect(elements.section).toHaveTextContent(i18next.t('fetching.errors.networkError'));
   });
   expect(getSectionTree()).toMatchSnapshot();
 });
@@ -90,7 +90,7 @@ test("form rss loaded and can't load same", async () => {
     .reply(200, rss);
   elements.submit.click();
   await waitFor(() => {
-    expect(elements.section).toHaveTextContent(i18next.t('form.hints.rssLoaded'));
+    expect(elements.section).toHaveTextContent(i18next.t('fetching.success'));
   });
   expect(getSectionTree()).toMatchSnapshot();
 

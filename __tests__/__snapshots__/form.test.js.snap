@@ -48,7 +48,7 @@ exports[`form invalid RSS 1`] = `
                 <div class=\\"form-row\\">
                     <div class=\\"col\\">
                         <input
-                            class=\\"form-control form-control-lg is-invalid\\"
+                            class=\\"form-control form-control-lg\\"
                             type=\\"text\\"
                             required=\\"\\"
                             autofocus=\\"\\"
@@ -99,6 +99,7 @@ exports[`form invalid url 1`] = `
                         <button
                             class=\\"btn btn-primary btn-lg px-sm-5\\"
                             type=\\"submit\\"
+                            disabled=\\"\\"
                         >
                             Add
                         </button>
@@ -126,7 +127,7 @@ exports[`form network error 1`] = `
                 <div class=\\"form-row\\">
                     <div class=\\"col\\">
                         <input
-                            class=\\"form-control form-control-lg is-invalid\\"
+                            class=\\"form-control form-control-lg\\"
                             type=\\"text\\"
                             required=\\"\\"
                             autofocus=\\"\\"
@@ -216,6 +217,7 @@ exports[`form rss loaded and can't load same 2`] = `
                         <button
                             class=\\"btn btn-primary btn-lg px-sm-5\\"
                             type=\\"submit\\"
+                            disabled=\\"\\"
                         >
                             Add
                         </button>

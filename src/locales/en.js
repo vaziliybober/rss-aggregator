@@ -4,12 +4,14 @@ export default {
       errors: {
         invalidUrl: 'This must be a valid URL',
         repetativeUrl: 'This URL has already been added',
+      },
+    },
+    fetching: {
+      errors: {
         networkError: 'Network error',
         invalidRss: 'This source must contain valid RSS',
       },
-      hints: {
-        rssLoaded: 'RSS has been loaded',
-      },
+      success: 'RSS has been loaded',
     },
     feeds: 'Feeds',
     posts: 'Posts',
