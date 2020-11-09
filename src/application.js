@@ -32,10 +32,6 @@ const addFeedToStateByLink = (state, link) => urlSchema
   });
 
 const updateFeeds = (state) => {
-  if (state.feeds.length === 0) {
-    return Promise.resolve();
-  }
-
   const promises = state.feeds.map((feed) => {
     const feedId = feed.id;
     const oldPosts = state.posts.filter((post) => post.feedId === feed.id);
@@ -118,11 +114,11 @@ export default (options = {}) => {
       const setUpdateFeedsTimeout = () => setTimeout(() => {
         watchedState.updating = 'pending';
         return updateFeeds(watchedState)
-          .catch(() => {
-            watchedState.updating = 'failed';
-          })
           .then(() => {
             watchedState.updating = 'finished';
+          })
+          .catch(() => {
+            watchedState.updating = 'failed';
           })
           .then(setUpdateFeedsTimeout);
       }, config.updateInterval);
