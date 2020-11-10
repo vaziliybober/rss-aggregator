@@ -30,7 +30,6 @@ const addFeed = (watchedState, link) => {
       }))
     .then((properLink) => axios.get(proxifyUrl(properLink))
       .catch((err) => {
-        watchedState.fetching.state = 'failed';
         watchedState.fetching.error = 'networkError';
         throw err;
       }))
@@ -42,7 +41,6 @@ const addFeed = (watchedState, link) => {
         const posts = feedData.items.map((item) => ({ ...item, feedId }));
         watchedState.posts.push(...posts);
       } catch (err) {
-        watchedState.fetching.state = 'failed';
         watchedState.fetching.error = 'invalidRss';
         throw err;
       }

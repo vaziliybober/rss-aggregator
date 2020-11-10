@@ -60,6 +60,7 @@ exports[`form invalid RSS 1`] = `
                         <button
                             class=\\"btn btn-primary btn-lg px-sm-5\\"
                             type=\\"submit\\"
+                            disabled=\\"\\"
                         >
                             Add
                         </button>
@@ -139,6 +140,7 @@ exports[`form network error 1`] = `
                         <button
                             class=\\"btn btn-primary btn-lg px-sm-5\\"
                             type=\\"submit\\"
+                            disabled=\\"\\"
                         >
                             Add
                         </button>
