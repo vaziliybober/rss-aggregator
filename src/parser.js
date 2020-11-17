@@ -4,7 +4,9 @@ const parse = (rss) => {
   const firstErrorElement = doc.querySelector('parsererror');
 
   if (firstErrorElement) {
-    throw new Error(firstErrorElement.textContent);
+    const err = new Error(firstErrorElement.textContent);
+    err.isParseError = true;
+    throw err;
   }
 
   const title = doc.querySelector('title').textContent;

@@ -13,46 +13,28 @@ const urlSchema = yup.string().required().url('invalidUrl');
 
 const proxifyUrl = (url) => `${config.proxyUrl}/${url}`;
 
-const addFeed = (watchedState, link) => {
-  watchedState.form.isValid = true;
-  watchedState.form.error = '';
-  watchedState.fetching.state = 'pending';
-  watchedState.fetching.error = '';
-
-  const schema = urlSchema.notOneOf(watchedState.feeds.map((feed) => feed.link), 'repetativeUrl');
-
-  return Promise.resolve()
-    .then(() => schema.validate(link)
-      .catch((err) => {
-        watchedState.form.isValid = false;
-        watchedState.form.error = err.message;
-        throw err;
-      }))
-    .then((properLink) => axios.get(proxifyUrl(properLink))
-      .catch((err) => {
-        watchedState.fetching.error = 'networkError';
-        throw err;
-      }))
-    .then((response) => {
-      try {
-        const feedData = parse(response.data);
-        const feedId = _.uniqueId();
-        watchedState.feeds.push({ id: feedId, title: feedData.title, link });
-        const posts = feedData.items.map((item) => ({ ...item, feedId }));
-        watchedState.posts.push(...posts);
-      } catch (err) {
-        watchedState.fetching.error = 'invalidRss';
-        throw err;
-      }
-    })
-    .then(() => {
-      watchedState.fetching.state = 'finished';
-    })
-    .catch(() => {
-      // console.log(err);
-      watchedState.fetching.state = 'failed';
-    });
+const validate = (link, schema) => {
+  try {
+    schema.validateSync(link);
+  } catch (err) {
+    err.type = err.message;
+    throw err;
+  }
 };
+
+const getFeedData = (link) => axios.get(proxifyUrl(link))
+  .catch((err) => {
+    err.type = 'networkError';
+    throw err;
+  })
+  .then((response) => {
+    try {
+      return parse(response.data);
+    } catch (err) {
+      err.type = 'invalidRss';
+      throw err;
+    }
+  });
 
 const updateFeeds = (watchedState) => {
   watchedState.updating.state = 'pending';
@@ -60,25 +42,29 @@ const updateFeeds = (watchedState) => {
     const feedId = feed.id;
     const oldPosts = watchedState.posts.filter((post) => post.feedId === feed.id);
     return axios.get(proxifyUrl(feed.link))
-      .then((response) => ({ rssData: parse(response.data), oldPosts, feedId }));
-  });
-  return Promise.allSettled(promises).then((promisesResults) => {
-    promisesResults
-      .filter(({ status }) => status === 'fulfilled')
-      .forEach(({ value }) => {
-        const { rssData, oldPosts, feedId } = value;
-        const newItems = _.differenceWith(rssData.items, oldPosts,
-          (p1, p2) => p1.guid === p2.guid);
-        const newPosts = newItems.map((item) => ({ ...item, feedId }));
-        watchedState.posts.push(...newPosts);
+      .then((response) => {
+        const feedData = parse(response.data);
+        return { feedData, oldPosts, feedId };
       });
-  })
+  });
+  return Promise.allSettled(promises)
+    .then((promisesResults) => {
+      promisesResults
+        .filter(({ status }) => status === 'fulfilled')
+        .forEach(({ value }) => {
+          const { feedData, oldPosts, feedId } = value;
+          const newItems = _.differenceWith(feedData.items, oldPosts,
+            (p1, p2) => p1.guid === p2.guid);
+          const newPosts = newItems.map((item) => ({ ...item, feedId }));
+          watchedState.posts.push(...newPosts);
+        });
+    })
     .then(() => {
       watchedState.updating.state = 'finished';
     });
 };
 
-const startUpdatingFeeds = (watchedState) => {
+const startPeriodicFeedsUpdating = (watchedState) => {
   const setUpdateFeedsTimeout = () => setTimeout(() => updateFeeds(watchedState)
     .then(setUpdateFeedsTimeout), config.updateInterval);
 
@@ -123,10 +109,36 @@ export default (options = {}) => {
 
       const handler = (e) => {
         e.preventDefault();
-        return addFeed(watchedState, elements.input.value);
+
+        watchedState.form.isValid = true;
+        watchedState.form.error = '';
+        const link = elements.input.value;
+        const schema = urlSchema.notOneOf(watchedState.feeds.map((feed) => feed.link), 'repetativeUrl');
+        try {
+          validate(link, schema);
+        } catch (err) {
+          watchedState.form.isValid = false;
+          watchedState.form.error = err.type;
+          return Promise.resolve();
+        }
+
+        watchedState.fetching.state = 'pending';
+        watchedState.fetching.error = '';
+        return getFeedData(link)
+          .then((feedData) => {
+            const feedId = _.uniqueId();
+            watchedState.feeds.push({ id: feedId, title: feedData.title, link });
+            const posts = feedData.items.map((item) => ({ ...item, feedId }));
+            watchedState.posts.push(...posts);
+            watchedState.fetching.state = 'finished';
+          })
+          .catch((err) => {
+            watchedState.fetching.state = 'failed';
+            watchedState.fetching.error = err.type;
+          });
       };
 
       elements.form.addEventListener('submit', handler);
-      startUpdatingFeeds(watchedState);
+      startPeriodicFeedsUpdating(watchedState);
     });
 };
