@@ -10,3 +10,12 @@ This is the lvl-3 frontend project on https://ru.hexlet.io/
 
 ## Link
 https://rss-aggregator.vaziliybober.vercel.app/
+
+## Clone
+
+```
+git clone git@github.com:vaziliybober/rss-aggregator.git
+cd rss-aggregator
+make install
+make develop
+```
